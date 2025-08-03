@@ -9,10 +9,14 @@ const JUMP_DELTA = .9
 var jump_num = 0
 
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+		
+	if anmated_sprite.animation == "death":
+		return
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		jump_num = 1
